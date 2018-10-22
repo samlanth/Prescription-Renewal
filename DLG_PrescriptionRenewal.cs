@@ -262,5 +262,20 @@ namespace Prescription_Renewal
                 LBX_PrescriptionNumber.SelectedIndex = 0;
                 LBX_PrescriptionNumber.Focus();
         }
+
+        private void FBTN_Add_MouseHover(object sender, EventArgs e)
+        {
+            this.FBTN_Add.BackgroundImage = Properties.Resources.ICON_Add_Over;
+        }
+
+        private void FBTN_Add_MouseLeave(object sender, EventArgs e)
+        {
+            this.FBTN_Add.BackgroundImage = Properties.Resources.ICON_Add_Neutral;
+        }
+
+        private void FBTN_Add_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.FBTN_Add.BackgroundImage = Properties.Resources.ICON_Add_Click;
+        }
     }
 }

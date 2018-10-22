@@ -245,6 +245,9 @@
             this.FBTN_Add.Size = new System.Drawing.Size(23, 20);
             this.FBTN_Add.TabIndex = 5;
             this.FBTN_Add.Click += new System.EventHandler(this.FBTN_Add_Click);
+            this.FBTN_Add.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FBTN_Add_MouseDown);
+            this.FBTN_Add.MouseLeave += new System.EventHandler(this.FBTN_Add_MouseLeave);
+            this.FBTN_Add.MouseHover += new System.EventHandler(this.FBTN_Add_MouseHover);
             // 
             // LB_Comment
             // 
