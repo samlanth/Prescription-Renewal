@@ -76,6 +76,7 @@
             this.CBB_StoreSelector.Name = "CBB_StoreSelector";
             this.CBB_StoreSelector.Size = new System.Drawing.Size(357, 21);
             this.CBB_StoreSelector.TabIndex = 3;
+            this.CBB_StoreSelector.SelectedIndexChanged += new System.EventHandler(this.CBB_StoreSelector_SelectedIndexChanged);
             // 
             // LB_ZipCode
             // 
@@ -242,6 +243,7 @@
             this.FBTN_Add.Name = "FBTN_Add";
             this.FBTN_Add.Size = new System.Drawing.Size(23, 20);
             this.FBTN_Add.TabIndex = 5;
+            this.FBTN_Add.Click += new System.EventHandler(this.FBTN_Add_Click);
             // 
             // LB_Comment
             // 
@@ -278,6 +280,7 @@
             // 
             // BTN_Ok
             // 
+            this.BTN_Ok.Cursor = System.Windows.Forms.Cursors.Default;
             this.BTN_Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.BTN_Ok.Location = new System.Drawing.Point(256, 350);
             this.BTN_Ok.Name = "BTN_Ok";

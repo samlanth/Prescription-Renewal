@@ -64,6 +64,7 @@ namespace Prescription_Renewal
             else
                 message = "Aucune succursale sélectionnée";
             return CBB_StoreSelector.Text != "";
+           
         }
         private bool Validate_LastName(ref string message)
         {
@@ -72,11 +73,16 @@ namespace Prescription_Renewal
         }
         private bool Validate_ZipCode(ref string message)
         {
+            Store foundedStore = null;
             if (MTBX_ZipCode.Text == "")
-                message = "Zip code absent / incorrecte";
-            else
-                message = "Zip code absent / incorrecte";
-            return MTBX_ZipCode.MaskCompleted;
+                message = "Zip code absent";
+            if (MTBX_ZipCode.MaskCompleted)
+            {
+                 foundedStore = Stores.FindByZipCode(MTBX_ZipCode.Text);
+                CBB_StoreSelector.SelectedItem = foundedStore;
+                message = "Aucune surcusale trouvée";
+            }
+            return foundedStore != null && MTBX_ZipCode.MaskCompleted;
         }
         private bool Validate_Phone(ref string message)
         {
@@ -126,8 +132,7 @@ namespace Prescription_Renewal
         {
             InitValidationProvider();
             Init_UI();
-
-            Stores = new Stores(Properties.Resources.Stores);
+            
             
             CBB_StoreSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
             CBB_StoreSelector.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -168,7 +173,7 @@ namespace Prescription_Renewal
             prescriptionRenewal.Comment = RBTX_Comment.Text;
             prescriptionRenewal.Store.Phone = TBX_PhoneExtension.Text;
             LBX_PrescriptionNumber.Items.AddRange(prescriptionRenewal.PrescriptionNumbers.ToArray());
-            
+            LBX_PrescriptionNumber.SelectedItem = 0;
         }
         private string ReformatName(string name)
         {
@@ -235,6 +240,25 @@ namespace Prescription_Renewal
                         e.Handled = true;
                     }
                 }
+            }
+        }
+
+        private void FBTN_Add_Click(object sender, EventArgs e)
+        {
+            LBX_PrescriptionNumber.ClearSelected();
+            LBX_PrescriptionNumber.Items.Clear();
+            LBX_PrescriptionNumber.Items.Add(MTBX_PrescriptionNumber.Text);
+            LBX_PrescriptionNumber.SelectedIndex = 0;
+            LBX_PrescriptionNumber.Focus();
+        }
+
+        private void CBB_StoreSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string foundedZip = "";
+            if (CBB_StoreSelector.SelectedItem != null)
+            { 
+                foundedZip = ((Store)CBB_StoreSelector.SelectedItem).ZipCode;
+                MTBX_ZipCode.Text = foundedZip;
             }
         }
     }
