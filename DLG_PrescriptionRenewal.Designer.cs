@@ -230,6 +230,7 @@
             this.FBTN_Abort.Name = "FBTN_Abort";
             this.FBTN_Abort.Size = new System.Drawing.Size(25, 20);
             this.FBTN_Abort.TabIndex = 6;
+            this.FBTN_Abort.Click += new System.EventHandler(this.FBTN_Abort_Click);
             // 
             // FBTN_Add
             // 

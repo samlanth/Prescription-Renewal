@@ -25,22 +25,22 @@ namespace Prescription_Renewal
             Stores = new Stores(Properties.Resources.Stores);
 
             //Décommenter cette section pour vos tests
-            //currentPrescriptionRenewal = new PrescriptionRenewal();
+            currentPrescriptionRenewal = new PrescriptionRenewal();
 
 
-            //currentPrescriptionRenewal.Store = Stores[14];
-            //currentPrescriptionRenewal.Client = new Client
-            //{
-            //    FirstName = "Martin",
-            //    LastName = "Tremblant",
-            //    Phone = "(555) 836-8632",
-            //    PhoneExtension = "342",
-            //    EMail = "martin.tremblant@gmail.ca"
-            //};
-            //currentPrescriptionRenewal.Add_Prescription("Rx 1431432-0089");
-            //currentPrescriptionRenewal.Add_Prescription("Rx 1431422-0089");
-            //currentPrescriptionRenewal.Add_Prescription("Rx 1671000-0132");
-            //currentPrescriptionRenewal.Comment = "Veuillez me préparer svp deux mois de posologie.\nMerci et bonne journée!";
+            currentPrescriptionRenewal.Store = Stores[14];
+            currentPrescriptionRenewal.Client = new Client
+            {
+                FirstName = "Martin",
+                LastName = "Tremblant",
+                Phone = "(555) 836-8632",
+                PhoneExtension = "342",
+                EMail = "martin.tremblant@gmail.ca"
+            };
+            currentPrescriptionRenewal.Add_Prescription("Rx 1431432-0089");
+            currentPrescriptionRenewal.Add_Prescription("Rx 1431422-0089");
+            currentPrescriptionRenewal.Add_Prescription("Rx 1671000-0132");
+            currentPrescriptionRenewal.Comment = "Veuillez me préparer svp deux mois de posologie.\nMerci et bonne journée!";
 
 
         }

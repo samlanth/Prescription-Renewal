@@ -112,21 +112,20 @@ namespace Prescription_Renewal
 
             MTBX_PrescriptionNumber.Mask = "Rx 0000000-0000";
             MTBX_PrescriptionNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
-         
+
             if (prescriptionRenewal != null)
             {
                 prescriptionRenewal_to_Dlg();
-            }
-            if (prescriptionRenewal == null)
-            {
-                BTN_Ok.Text = "Renouveler";
-                prescriptionRenewal = new PrescriptionRenewal();
+                BTN_Ok.Text = "Modify";
             }
             else
             {
-                BTN_Ok.Text = "Modify";
-                prescriptionRenewal_to_Dlg();
+                prescriptionRenewal = new PrescriptionRenewal();
+                prescriptionRenewal.Store = Stores[14];
+                prescriptionRenewal.Client = new Client();
             }
+            
+
         }
         private void DLG_PrescriptionRenewal_Load(object sender, EventArgs e)
         {
@@ -148,32 +147,29 @@ namespace Prescription_Renewal
         {
            if (prescriptionRenewal.Client != null)
             {
+                CBB_StoreSelector.Text = prescriptionRenewal.Store.Address;
                 TBX_FirstName.Text = prescriptionRenewal.Client.FirstName;
                 TBX_LastName.Text = prescriptionRenewal.Client.LastName;
                 MTBX_ZipCode.Text = prescriptionRenewal.Store.ZipCode;
                 MTBX_Phone.Text = prescriptionRenewal.Client.Phone;
                 TBX_EMail.Text = prescriptionRenewal.Client.EMail;
-                CBB_StoreSelector.Text = prescriptionRenewal.Store.Address;
                 RBTX_Comment.Text = prescriptionRenewal.Comment;
                 TBX_PhoneExtension.Text = prescriptionRenewal.Client.PhoneExtension;
-                LBX_PrescriptionNumber.Items.AddRange(prescriptionRenewal.PrescriptionNumbers.ToArray());
+                LBX_PrescriptionNumber.Items.Clear();
                 MTBX_PrescriptionNumber.Text = prescriptionRenewal.PrescriptionNumbers.ToString();
-                prescriptionRenewal.Add_Prescription(prescriptionRenewal.PrescriptionNumbers.ToString());
-                //prescriptionRenewal.PrescriptionNumbers.AddRange(prescriptionRenewal.PrescriptionNumbers.ToArray());
+                LBX_PrescriptionNumber.Items.AddRange(prescriptionRenewal.PrescriptionNumbers.ToArray());
             }
         }
         private void Dlg_to_prescriptionRenewal()
         {
             prescriptionRenewal.Client.FirstName = TBX_FirstName.Text;
             prescriptionRenewal.Client.LastName = TBX_LastName.Text;
-            prescriptionRenewal.Store.ZipCode = MTBX_ZipCode.Text;
             prescriptionRenewal.Client.Phone = MTBX_Phone.Text;
             prescriptionRenewal.Client.EMail = TBX_EMail.Text;
-            prescriptionRenewal.Store.Address = CBB_StoreSelector.Text;
+            prescriptionRenewal.Store = (Store)(CBB_StoreSelector.SelectedItem);
             prescriptionRenewal.Comment = RBTX_Comment.Text;
             prescriptionRenewal.Store.Phone = TBX_PhoneExtension.Text;
             LBX_PrescriptionNumber.Items.AddRange(prescriptionRenewal.PrescriptionNumbers.ToArray());
-            LBX_PrescriptionNumber.SelectedItem = 0;
         }
         private string ReformatName(string name)
         {
@@ -245,8 +241,6 @@ namespace Prescription_Renewal
 
         private void FBTN_Add_Click(object sender, EventArgs e)
         {
-            LBX_PrescriptionNumber.ClearSelected();
-            LBX_PrescriptionNumber.Items.Clear();
             LBX_PrescriptionNumber.Items.Add(MTBX_PrescriptionNumber.Text);
             LBX_PrescriptionNumber.SelectedIndex = 0;
             LBX_PrescriptionNumber.Focus();
@@ -260,6 +254,13 @@ namespace Prescription_Renewal
                 foundedZip = ((Store)CBB_StoreSelector.SelectedItem).ZipCode;
                 MTBX_ZipCode.Text = foundedZip;
             }
+        }
+
+        private void FBTN_Abort_Click(object sender, EventArgs e)
+        {
+                LBX_PrescriptionNumber.Items.Remove(LBX_PrescriptionNumber.SelectedItem);
+                LBX_PrescriptionNumber.SelectedIndex = 0;
+                LBX_PrescriptionNumber.Focus();
         }
     }
 }
