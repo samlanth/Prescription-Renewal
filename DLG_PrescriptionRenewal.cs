@@ -35,16 +35,16 @@ namespace Prescription_Renewal
             ValidationProvider.AddControlToValidate(TBX_EMail, Validate_Email);
             ValidationProvider.AddControlToValidate(CBB_StoreSelector, Validate_StoreSelector);
             ValidationProvider.AddControlToValidate(MTBX_PrescriptionNumber, Validate_Prescription_Number);
-            ValidationProvider.AddControlToValidate(LBX_PrescriptionNumber, Validate_Prescription_List);
+           // ValidationProvider.AddControlToValidate(LBX_PrescriptionNumber, Validate_Prescription_List);
         }
-        private bool Validate_Prescription_List(ref string message)
-        {
-            if (LBX_PrescriptionNumber.Items.Count == 0)
-            {
-                message = "Aucun numéro d’ordonnance";
-            }
-            return LBX_PrescriptionNumber.Text != "";
-        }
+        //private bool Validate_Prescription_List(ref string message)
+        //{
+        //    if (LBX_PrescriptionNumber.Items.Count == 0)
+        //    {
+        //        message = "Aucun numéro d’ordonnance";
+        //    }
+        //    return LBX_PrescriptionNumber.Text != "";
+        //}
         private bool Validate_FirstName(ref string message)
         {
             if (TBX_FirstName.Text == "")
@@ -53,19 +53,25 @@ namespace Prescription_Renewal
         }
         private bool Validate_Prescription_Number(ref string message)
         {
-            if (MTBX_PrescriptionNumber.MaskCompleted)
+            if (MTBX_PrescriptionNumber.MaskCompleted && !LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text))
             {
                 FBTN_Add.Enabled = true;
                 FBTN_Add.Visible = true;
                 LBX_PrescriptionNumber.Enabled = false;
             }
-            else
+            else if (LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text))
             {
                 FBTN_Add.Enabled = false;
                 FBTN_Add.Visible = false;
                 LBX_PrescriptionNumber.Enabled = true;
+                message = "Numero deja dans la liste";
+                return MTBX_PrescriptionNumber.Text == "";
             }
-            
+            else
+            {
+                FBTN_Add.Enabled = false;
+                FBTN_Add.Visible = false;
+            }
             return MTBX_PrescriptionNumber.Text != "";
             //if (LBX_PrescriptionNumber.Items.Cast<string>().Any(item => MTBX_PrescriptionNumber.Text == MTBX_PrescriptionNumber.SelectedText.ToString()))
             //  message = "Ce numéro d’ordonnance figure déjà dans la liste";
@@ -155,6 +161,7 @@ namespace Prescription_Renewal
             {
                 CBB_StoreSelector.Items.Add(Stores[i]);
             }
+            FBTN_Abort.Visible = false;
         }
 
         private void prescriptionRenewal_to_Dlg()
@@ -256,8 +263,8 @@ namespace Prescription_Renewal
         private void FBTN_Add_Click(object sender, EventArgs e)
         {
             LBX_PrescriptionNumber.Items.Add(MTBX_PrescriptionNumber.Text);
-            //LBX_PrescriptionNumber.SelectedIndex = 0;
-            //LBX_PrescriptionNumber.Focus();
+            prescriptionRenewal.Add_Prescription(MTBX_PrescriptionNumber.Text);
+            MTBX_PrescriptionNumber.Text = "";
         }
 
         private void CBB_StoreSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,6 +317,16 @@ namespace Prescription_Renewal
         private void FBTN_Abort_MouseHover(object sender, EventArgs e)
         {
             this.FBTN_Abort.BackgroundImage = Properties.Resources.ICON_Annuler_Over;
+        }
+
+        private void MTBX_PrescriptionNumber_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void MTBX_PrescriptionNumber_TextChanged(object sender, EventArgs e)
+        {
+            FBTN_Abort.Visible = true;
         }
     }
 }
