@@ -231,6 +231,9 @@
             this.FBTN_Abort.Size = new System.Drawing.Size(25, 20);
             this.FBTN_Abort.TabIndex = 6;
             this.FBTN_Abort.Click += new System.EventHandler(this.FBTN_Abort_Click);
+            this.FBTN_Abort.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FBTN_Abort_MouseDown);
+            this.FBTN_Abort.MouseLeave += new System.EventHandler(this.FBTN_Abort_MouseLeave);
+            this.FBTN_Abort.MouseHover += new System.EventHandler(this.FBTN_Abort_MouseHover);
             // 
             // FBTN_Add
             // 
