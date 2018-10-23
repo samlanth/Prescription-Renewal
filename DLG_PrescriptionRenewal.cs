@@ -35,16 +35,7 @@ namespace Prescription_Renewal
             ValidationProvider.AddControlToValidate(TBX_EMail, Validate_Email);
             ValidationProvider.AddControlToValidate(CBB_StoreSelector, Validate_StoreSelector);
             ValidationProvider.AddControlToValidate(MTBX_PrescriptionNumber, Validate_Prescription_Number);
-           // ValidationProvider.AddControlToValidate(LBX_PrescriptionNumber, Validate_Prescription_List);
         }
-        //private bool Validate_Prescription_List(ref string message)
-        //{
-        //    if (LBX_PrescriptionNumber.Items.Count == 0)
-        //    {
-        //        message = "Aucun numéro d’ordonnance";
-        //    }
-        //    return LBX_PrescriptionNumber.Text != "";
-        //}
         private bool Validate_FirstName(ref string message)
         {
             if (TBX_FirstName.Text == "")
@@ -73,9 +64,6 @@ namespace Prescription_Renewal
                 FBTN_Add.Visible = false;
             }
             return MTBX_PrescriptionNumber.Text != "";
-            //if (LBX_PrescriptionNumber.Items.Cast<string>().Any(item => MTBX_PrescriptionNumber.Text == MTBX_PrescriptionNumber.SelectedText.ToString()))
-            //  message = "Ce numéro d’ordonnance figure déjà dans la liste";
-            //return MTBX_PrescriptionNumber.Text != "";
         }
         private bool Validate_StoreSelector(ref string message)
         {
@@ -151,12 +139,11 @@ namespace Prescription_Renewal
         {
             InitValidationProvider();
             Init_UI();
-            
-            
+
             CBB_StoreSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
             CBB_StoreSelector.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CBB_StoreSelector.AutoCompleteSource = AutoCompleteSource.ListItems;
-            
+         
             for (int i=0; i<325;i++)
             {
                 CBB_StoreSelector.Items.Add(Stores[i]);
@@ -228,7 +215,8 @@ namespace Prescription_Renewal
 
         private void TBX_LastName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && (e.KeyChar != '-') && (e.KeyChar != '\''))
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && (e.KeyChar != '-')
+                && (e.KeyChar != '\''))
             {
                 e.Handled = true;
             }
@@ -265,6 +253,7 @@ namespace Prescription_Renewal
             LBX_PrescriptionNumber.Items.Add(MTBX_PrescriptionNumber.Text);
             prescriptionRenewal.Add_Prescription(MTBX_PrescriptionNumber.Text);
             MTBX_PrescriptionNumber.Text = "";
+            LBX_PrescriptionNumber.Enabled = true;
         }
 
         private void CBB_StoreSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -279,6 +268,7 @@ namespace Prescription_Renewal
 
         private void FBTN_Abort_Click(object sender, EventArgs e)
         {
+            FBTN_Abort.Visible = false;
             if (MTBX_PrescriptionNumber.MaskCompleted == false)
             {
                 MTBX_PrescriptionNumber.Text = "";
@@ -319,14 +309,47 @@ namespace Prescription_Renewal
             this.FBTN_Abort.BackgroundImage = Properties.Resources.ICON_Annuler_Over;
         }
 
-        private void MTBX_PrescriptionNumber_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void MTBX_PrescriptionNumber_Click(object sender, EventArgs e)
         {
-
+            if (MTBX_PrescriptionNumber.Focused)
+            {
+                FBTN_Abort.Visible = true;
+                BTN_Cancel.Enabled = false;
+                BTN_Ok.Enabled = false;
+            }
+            else
+            {
+                FBTN_Abort.Visible = false;
+                BTN_Cancel.Enabled = true ;
+                BTN_Ok.Enabled = true;
+            }
         }
 
-        private void MTBX_PrescriptionNumber_TextChanged(object sender, EventArgs e)
+        private void MTBX_PrescriptionNumber_Leave(object sender, EventArgs e)
         {
-            FBTN_Abort.Visible = true;
+            if (!FBTN_Abort.Focused)
+            {
+                FBTN_Abort.Visible = false;
+                BTN_Cancel.Enabled = true;
+                BTN_Ok.Enabled = true;
+            }
+        }
+
+        private void FBTN_Abort_Leave(object sender, EventArgs e)
+        {
+            if (!MTBX_PrescriptionNumber.Focused)
+            {
+                FBTN_Abort.Visible = false;
+                BTN_Cancel.Enabled = true;
+                BTN_Ok.Enabled = true;
+            }
+        }
+
+        private void MTBX_PrescriptionNumber_Enter(object sender, EventArgs e)
+        {
+            MTBX_PrescriptionNumber.Visible = true;
+            BTN_Cancel.Enabled = false;
+            BTN_Ok.Enabled = false;
         }
     }
 }
