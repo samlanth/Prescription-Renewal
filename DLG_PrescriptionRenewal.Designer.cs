@@ -230,9 +230,9 @@
             this.FBTN_Editer.ImageDisable = null;
             this.FBTN_Editer.ImageNeutral = null;
             this.FBTN_Editer.ImageOver = null;
-            this.FBTN_Editer.Location = new System.Drawing.Point(109, 19);
+            this.FBTN_Editer.Location = new System.Drawing.Point(112, 19);
             this.FBTN_Editer.Name = "FBTN_Editer";
-            this.FBTN_Editer.Size = new System.Drawing.Size(26, 20);
+            this.FBTN_Editer.Size = new System.Drawing.Size(23, 20);
             this.FBTN_Editer.TabIndex = 5;
             this.FBTN_Editer.Click += new System.EventHandler(this.FBTN_Editer_Click);
             // 
@@ -246,7 +246,7 @@
             this.FBTN_Delete.ImageOver = null;
             this.FBTN_Delete.Location = new System.Drawing.Point(112, 19);
             this.FBTN_Delete.Name = "FBTN_Delete";
-            this.FBTN_Delete.Size = new System.Drawing.Size(20, 20);
+            this.FBTN_Delete.Size = new System.Drawing.Size(23, 20);
             this.FBTN_Delete.TabIndex = 7;
             this.FBTN_Delete.Visible = false;
             this.FBTN_Delete.Click += new System.EventHandler(this.FBTN_Delete_Click);
@@ -279,7 +279,7 @@
             this.FBTN_Add.ImageOver = null;
             this.FBTN_Add.Location = new System.Drawing.Point(109, 19);
             this.FBTN_Add.Name = "FBTN_Add";
-            this.FBTN_Add.Size = new System.Drawing.Size(23, 20);
+            this.FBTN_Add.Size = new System.Drawing.Size(26, 20);
             this.FBTN_Add.TabIndex = 5;
             this.FBTN_Add.Click += new System.EventHandler(this.FBTN_Add_Click);
             this.FBTN_Add.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FBTN_Add_MouseDown);
@@ -321,8 +321,8 @@
             this.MTBX_PrescriptionNumber.Name = "MTBX_PrescriptionNumber";
             this.MTBX_PrescriptionNumber.Size = new System.Drawing.Size(100, 20);
             this.MTBX_PrescriptionNumber.TabIndex = 0;
-            this.MTBX_PrescriptionNumber.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.MTBX_PrescriptionNumber_MaskInputRejected);
             this.MTBX_PrescriptionNumber.Click += new System.EventHandler(this.MTBX_PrescriptionNumber_Click);
+            this.MTBX_PrescriptionNumber.TextChanged += new System.EventHandler(this.MTBX_PrescriptionNumber_TextChanged);
             this.MTBX_PrescriptionNumber.Enter += new System.EventHandler(this.MTBX_PrescriptionNumber_Enter);
             this.MTBX_PrescriptionNumber.Leave += new System.EventHandler(this.MTBX_PrescriptionNumber_Leave);
             // 

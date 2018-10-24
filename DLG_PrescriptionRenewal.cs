@@ -58,7 +58,6 @@ namespace Prescription_Renewal
                 FBTN_Add.Enabled = true;
                 FBTN_Add.Visible = true;
                 LBX_PrescriptionNumber.Enabled = false;
-                return false;
             }
             else if (LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text))
             {
@@ -72,7 +71,6 @@ namespace Prescription_Renewal
             {
                 FBTN_Add.Enabled = false;
                 FBTN_Add.Visible = false;
-                return false;
             }
             return MTBX_PrescriptionNumber.Text != "";
         }
@@ -150,7 +148,7 @@ namespace Prescription_Renewal
         {
             InitValidationProvider();
             Init_UI();
-
+            LBX_PrescriptionNumber.Enabled = true;
             CBB_StoreSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
             CBB_StoreSelector.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CBB_StoreSelector.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -189,7 +187,11 @@ namespace Prescription_Renewal
             prescriptionRenewal.Store = (Store)(CBB_StoreSelector.SelectedItem);
             prescriptionRenewal.Comment = RBTX_Comment.Text;
             prescriptionRenewal.Store.Phone = TBX_PhoneExtension.Text;
-            LBX_PrescriptionNumber.Items.AddRange(prescriptionRenewal.PrescriptionNumbers.ToArray());
+            prescriptionRenewal.PrescriptionNumbers.Clear();
+            for (int i = 0; i<LBX_PrescriptionNumber.Items.Count; i++)
+            {
+                prescriptionRenewal.PrescriptionNumbers.Add(LBX_PrescriptionNumber.Items[i].ToString());
+            }
         }
         private string ReformatName(string name)
         {
@@ -380,8 +382,14 @@ namespace Prescription_Renewal
                     foreach (object listItem in LBX_PrescriptionNumber.SelectedItems)
                     {
                         MTBX_PrescriptionNumber.Text = listItem.ToString();
+                        MTBX_PrescriptionNumber.Focus();
                     }
                 }
+            //if (MTBX_PrescriptionNumber.Text != LBX_PrescriptionNumber.SelectedItem.ToString())
+            //{
+            //    FBTN_Editer.Visible = true;
+            //    FBTN_Delete.Visible = false;
+            //}
         }
 
         private void FBTN_Delete_Click(object sender, EventArgs e)
@@ -391,29 +399,42 @@ namespace Prescription_Renewal
             if (this.LBX_PrescriptionNumber.SelectedIndex >= 0)
             {
                 this.LBX_PrescriptionNumber.Items.RemoveAt(this.LBX_PrescriptionNumber.SelectedIndex);
+                prescriptionRenewal.Remove_Prescription(LBX_PrescriptionNumber.SelectedIndex.ToString());
                 MTBX_PrescriptionNumber.Text = "";
+            }
+        }
+        private void LBX_PrescriptionNumber_Click(object sender, EventArgs e)
+        {
+            FBTN_Delete.Visible = true;
+        }
+
+        private void MTBX_PrescriptionNumber_TextChanged(object sender, EventArgs e)
+        {
+            if (!MTBX_PrescriptionNumber.MaskCompleted)
+            {
+                FBTN_Delete.Visible = false;
+            }
+            if (LBX_PrescriptionNumber.SelectedIndex >= 0)
+            {
+                if (MTBX_PrescriptionNumber.Text != LBX_PrescriptionNumber.SelectedItem.ToString() && MTBX_PrescriptionNumber.MaskCompleted)
+                {
+                    FBTN_Editer.Visible = true;
+                    FBTN_Add.Visible = false;
+                    FBTN_Add.Enabled = false;
+
+                }
             }
         }
 
         private void FBTN_Editer_Click(object sender, EventArgs e)
         {
+            FBTN_Abort.Visible = false;
+            MTBX_PrescriptionNumber.Text = "";
             FBTN_Editer.Visible = false;
-          //if (MTBX_PrescriptionNumber.Text == LBX_PrescriptionNumber.SelectedItem.ToString())
-          //  {
-          //      FBTN_Delete.Visible = false;
-          //      FBTN_Editer.Visible = true;
-          //  }
+            //LBX_PrescriptionNumber.Items.Add(MTBX_PrescriptionNumber.Text);
+            //prescriptionRenewal.Add_Prescription(MTBX_PrescriptionNumber.Text);
+            //MTBX_PrescriptionNumber.Text = "";
+            //LBX_PrescriptionNumber.Enabled = true;
         }
-
-        private void MTBX_PrescriptionNumber_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void LBX_PrescriptionNumber_Click(object sender, EventArgs e)
-        {
-            FBTN_Delete.Visible = true;
-        }
-        
     }
 }
