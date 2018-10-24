@@ -44,6 +44,8 @@
             this.TBX_LastName = new System.Windows.Forms.TextBox();
             this.TBX_FirstName = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.FBTN_Editer = new FlashButton.FlashButton();
+            this.FBTN_Delete = new FlashButton.FlashButton();
             this.FBTN_Abort = new FlashButton.FlashButton();
             this.FBTN_Add = new FlashButton.FlashButton();
             this.LB_Comment = new System.Windows.Forms.Label();
@@ -205,6 +207,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.FBTN_Editer);
+            this.groupBox3.Controls.Add(this.FBTN_Delete);
             this.groupBox3.Controls.Add(this.FBTN_Abort);
             this.groupBox3.Controls.Add(this.FBTN_Add);
             this.groupBox3.Controls.Add(this.LB_Comment);
@@ -218,6 +222,35 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Liste de numéros d\'ordonnance";
             // 
+            // FBTN_Editer
+            // 
+            this.FBTN_Editer.BackgroundImage = global::Prescription_Renewal.Properties.Resources.ICON_Editer_Neutre;
+            this.FBTN_Editer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.FBTN_Editer.ImageClick = null;
+            this.FBTN_Editer.ImageDisable = null;
+            this.FBTN_Editer.ImageNeutral = null;
+            this.FBTN_Editer.ImageOver = null;
+            this.FBTN_Editer.Location = new System.Drawing.Point(109, 19);
+            this.FBTN_Editer.Name = "FBTN_Editer";
+            this.FBTN_Editer.Size = new System.Drawing.Size(26, 20);
+            this.FBTN_Editer.TabIndex = 5;
+            this.FBTN_Editer.Click += new System.EventHandler(this.FBTN_Editer_Click);
+            // 
+            // FBTN_Delete
+            // 
+            this.FBTN_Delete.BackgroundImage = global::Prescription_Renewal.Properties.Resources.ICON_Delete_Neutral;
+            this.FBTN_Delete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.FBTN_Delete.ImageClick = null;
+            this.FBTN_Delete.ImageDisable = null;
+            this.FBTN_Delete.ImageNeutral = null;
+            this.FBTN_Delete.ImageOver = null;
+            this.FBTN_Delete.Location = new System.Drawing.Point(112, 19);
+            this.FBTN_Delete.Name = "FBTN_Delete";
+            this.FBTN_Delete.Size = new System.Drawing.Size(20, 20);
+            this.FBTN_Delete.TabIndex = 7;
+            this.FBTN_Delete.Visible = false;
+            this.FBTN_Delete.Click += new System.EventHandler(this.FBTN_Delete_Click);
+            // 
             // FBTN_Abort
             // 
             this.FBTN_Abort.BackgroundImage = global::Prescription_Renewal.Properties.Resources.ICON_Annuler_Neutral;
@@ -226,11 +259,12 @@
             this.FBTN_Abort.ImageDisable = null;
             this.FBTN_Abort.ImageNeutral = null;
             this.FBTN_Abort.ImageOver = null;
-            this.FBTN_Abort.Location = new System.Drawing.Point(138, 19);
+            this.FBTN_Abort.Location = new System.Drawing.Point(141, 19);
             this.FBTN_Abort.Name = "FBTN_Abort";
-            this.FBTN_Abort.Size = new System.Drawing.Size(25, 20);
+            this.FBTN_Abort.Size = new System.Drawing.Size(22, 20);
             this.FBTN_Abort.TabIndex = 6;
             this.FBTN_Abort.Click += new System.EventHandler(this.FBTN_Abort_Click);
+            this.FBTN_Abort.Leave += new System.EventHandler(this.FBTN_Abort_Leave);
             this.FBTN_Abort.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FBTN_Abort_MouseDown);
             this.FBTN_Abort.MouseLeave += new System.EventHandler(this.FBTN_Abort_MouseLeave);
             this.FBTN_Abort.MouseHover += new System.EventHandler(this.FBTN_Abort_MouseHover);
@@ -264,6 +298,7 @@
             // 
             // RBTX_Comment
             // 
+            this.RBTX_Comment.AcceptsTab = true;
             this.RBTX_Comment.Location = new System.Drawing.Point(163, 45);
             this.RBTX_Comment.Name = "RBTX_Comment";
             this.RBTX_Comment.Size = new System.Drawing.Size(208, 69);
@@ -277,6 +312,8 @@
             this.LBX_PrescriptionNumber.Name = "LBX_PrescriptionNumber";
             this.LBX_PrescriptionNumber.Size = new System.Drawing.Size(117, 69);
             this.LBX_PrescriptionNumber.TabIndex = 1;
+            this.LBX_PrescriptionNumber.Click += new System.EventHandler(this.LBX_PrescriptionNumber_Click);
+            this.LBX_PrescriptionNumber.SelectedIndexChanged += new System.EventHandler(this.LBX_PrescriptionNumber_SelectedIndexChanged);
             // 
             // MTBX_PrescriptionNumber
             // 
@@ -284,6 +321,10 @@
             this.MTBX_PrescriptionNumber.Name = "MTBX_PrescriptionNumber";
             this.MTBX_PrescriptionNumber.Size = new System.Drawing.Size(100, 20);
             this.MTBX_PrescriptionNumber.TabIndex = 0;
+            this.MTBX_PrescriptionNumber.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.MTBX_PrescriptionNumber_MaskInputRejected);
+            this.MTBX_PrescriptionNumber.Click += new System.EventHandler(this.MTBX_PrescriptionNumber_Click);
+            this.MTBX_PrescriptionNumber.Enter += new System.EventHandler(this.MTBX_PrescriptionNumber_Enter);
+            this.MTBX_PrescriptionNumber.Leave += new System.EventHandler(this.MTBX_PrescriptionNumber_Leave);
             // 
             // BTN_Ok
             // 
@@ -359,5 +400,7 @@
         private System.Windows.Forms.MaskedTextBox MTBX_Phone;
         private FlashButton.FlashButton FBTN_Add;
         private FlashButton.FlashButton FBTN_Abort;
+        private FlashButton.FlashButton FBTN_Delete;
+        private FlashButton.FlashButton FBTN_Editer;
     }
 }
