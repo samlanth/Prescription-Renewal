@@ -44,16 +44,16 @@
             this.TBX_LastName = new System.Windows.Forms.TextBox();
             this.TBX_FirstName = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.FBTN_Editer = new FlashButton.FlashButton();
-            this.FBTN_Delete = new FlashButton.FlashButton();
-            this.FBTN_Abort = new FlashButton.FlashButton();
-            this.FBTN_Add = new FlashButton.FlashButton();
             this.LB_Comment = new System.Windows.Forms.Label();
             this.RBTX_Comment = new System.Windows.Forms.RichTextBox();
             this.LBX_PrescriptionNumber = new System.Windows.Forms.ListBox();
             this.MTBX_PrescriptionNumber = new System.Windows.Forms.MaskedTextBox();
             this.BTN_Ok = new System.Windows.Forms.Button();
             this.BTN_Cancel = new System.Windows.Forms.Button();
+            this.FBTN_Editer = new FlashButton.FlashButton();
+            this.FBTN_Delete = new FlashButton.FlashButton();
+            this.FBTN_Abort = new FlashButton.FlashButton();
+            this.FBTN_Add = new FlashButton.FlashButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -222,6 +222,67 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Liste de numéros d\'ordonnance";
             // 
+            // LB_Comment
+            // 
+            this.LB_Comment.AutoSize = true;
+            this.LB_Comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_Comment.Location = new System.Drawing.Point(169, 29);
+            this.LB_Comment.Name = "LB_Comment";
+            this.LB_Comment.Size = new System.Drawing.Size(166, 13);
+            this.LB_Comment.TabIndex = 3;
+            this.LB_Comment.Text = "Commentaire du pharmacien";
+            // 
+            // RBTX_Comment
+            // 
+            this.RBTX_Comment.AcceptsTab = true;
+            this.RBTX_Comment.Location = new System.Drawing.Point(163, 45);
+            this.RBTX_Comment.Name = "RBTX_Comment";
+            this.RBTX_Comment.Size = new System.Drawing.Size(208, 69);
+            this.RBTX_Comment.TabIndex = 2;
+            this.RBTX_Comment.Text = "";
+            // 
+            // LBX_PrescriptionNumber
+            // 
+            this.LBX_PrescriptionNumber.FormattingEnabled = true;
+            this.LBX_PrescriptionNumber.Location = new System.Drawing.Point(6, 45);
+            this.LBX_PrescriptionNumber.Name = "LBX_PrescriptionNumber";
+            this.LBX_PrescriptionNumber.Size = new System.Drawing.Size(117, 69);
+            this.LBX_PrescriptionNumber.TabIndex = 1;
+            this.LBX_PrescriptionNumber.Click += new System.EventHandler(this.LBX_PrescriptionNumber_Click);
+            this.LBX_PrescriptionNumber.SelectedIndexChanged += new System.EventHandler(this.LBX_PrescriptionNumber_SelectedIndexChanged);
+            // 
+            // MTBX_PrescriptionNumber
+            // 
+            this.MTBX_PrescriptionNumber.Location = new System.Drawing.Point(6, 19);
+            this.MTBX_PrescriptionNumber.Name = "MTBX_PrescriptionNumber";
+            this.MTBX_PrescriptionNumber.Size = new System.Drawing.Size(100, 20);
+            this.MTBX_PrescriptionNumber.TabIndex = 0;
+            this.MTBX_PrescriptionNumber.Click += new System.EventHandler(this.MTBX_PrescriptionNumber_Click);
+            this.MTBX_PrescriptionNumber.TextChanged += new System.EventHandler(this.MTBX_PrescriptionNumber_TextChanged);
+            this.MTBX_PrescriptionNumber.Enter += new System.EventHandler(this.MTBX_PrescriptionNumber_Enter);
+            this.MTBX_PrescriptionNumber.Leave += new System.EventHandler(this.MTBX_PrescriptionNumber_Leave);
+            // 
+            // BTN_Ok
+            // 
+            this.BTN_Ok.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BTN_Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.BTN_Ok.Location = new System.Drawing.Point(256, 350);
+            this.BTN_Ok.Name = "BTN_Ok";
+            this.BTN_Ok.Size = new System.Drawing.Size(75, 23);
+            this.BTN_Ok.TabIndex = 3;
+            this.BTN_Ok.Text = "Renouveler";
+            this.BTN_Ok.UseVisualStyleBackColor = true;
+            // 
+            // BTN_Cancel
+            // 
+            this.BTN_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.BTN_Cancel.Location = new System.Drawing.Point(337, 350);
+            this.BTN_Cancel.Name = "BTN_Cancel";
+            this.BTN_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.BTN_Cancel.TabIndex = 4;
+            this.BTN_Cancel.Text = "Annuler";
+            this.BTN_Cancel.UseVisualStyleBackColor = true;
+            // 
             // FBTN_Editer
             // 
             this.FBTN_Editer.BackgroundImage = global::Prescription_Renewal.Properties.Resources.ICON_Editer_Neutre;
@@ -286,67 +347,6 @@
             this.FBTN_Add.MouseLeave += new System.EventHandler(this.FBTN_Add_MouseLeave);
             this.FBTN_Add.MouseHover += new System.EventHandler(this.FBTN_Add_MouseHover);
             // 
-            // LB_Comment
-            // 
-            this.LB_Comment.AutoSize = true;
-            this.LB_Comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Comment.Location = new System.Drawing.Point(169, 29);
-            this.LB_Comment.Name = "LB_Comment";
-            this.LB_Comment.Size = new System.Drawing.Size(166, 13);
-            this.LB_Comment.TabIndex = 3;
-            this.LB_Comment.Text = "Commentaire du pharmacien";
-            // 
-            // RBTX_Comment
-            // 
-            this.RBTX_Comment.AcceptsTab = true;
-            this.RBTX_Comment.Location = new System.Drawing.Point(163, 45);
-            this.RBTX_Comment.Name = "RBTX_Comment";
-            this.RBTX_Comment.Size = new System.Drawing.Size(208, 69);
-            this.RBTX_Comment.TabIndex = 2;
-            this.RBTX_Comment.Text = "";
-            // 
-            // LBX_PrescriptionNumber
-            // 
-            this.LBX_PrescriptionNumber.FormattingEnabled = true;
-            this.LBX_PrescriptionNumber.Location = new System.Drawing.Point(6, 45);
-            this.LBX_PrescriptionNumber.Name = "LBX_PrescriptionNumber";
-            this.LBX_PrescriptionNumber.Size = new System.Drawing.Size(117, 69);
-            this.LBX_PrescriptionNumber.TabIndex = 1;
-            this.LBX_PrescriptionNumber.Click += new System.EventHandler(this.LBX_PrescriptionNumber_Click);
-            this.LBX_PrescriptionNumber.SelectedIndexChanged += new System.EventHandler(this.LBX_PrescriptionNumber_SelectedIndexChanged);
-            // 
-            // MTBX_PrescriptionNumber
-            // 
-            this.MTBX_PrescriptionNumber.Location = new System.Drawing.Point(6, 19);
-            this.MTBX_PrescriptionNumber.Name = "MTBX_PrescriptionNumber";
-            this.MTBX_PrescriptionNumber.Size = new System.Drawing.Size(100, 20);
-            this.MTBX_PrescriptionNumber.TabIndex = 0;
-            this.MTBX_PrescriptionNumber.Click += new System.EventHandler(this.MTBX_PrescriptionNumber_Click);
-            this.MTBX_PrescriptionNumber.TextChanged += new System.EventHandler(this.MTBX_PrescriptionNumber_TextChanged);
-            this.MTBX_PrescriptionNumber.Enter += new System.EventHandler(this.MTBX_PrescriptionNumber_Enter);
-            this.MTBX_PrescriptionNumber.Leave += new System.EventHandler(this.MTBX_PrescriptionNumber_Leave);
-            // 
-            // BTN_Ok
-            // 
-            this.BTN_Ok.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BTN_Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BTN_Ok.Location = new System.Drawing.Point(256, 350);
-            this.BTN_Ok.Name = "BTN_Ok";
-            this.BTN_Ok.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Ok.TabIndex = 3;
-            this.BTN_Ok.Text = "Renouveler";
-            this.BTN_Ok.UseVisualStyleBackColor = true;
-            // 
-            // BTN_Cancel
-            // 
-            this.BTN_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BTN_Cancel.Location = new System.Drawing.Point(337, 350);
-            this.BTN_Cancel.Name = "BTN_Cancel";
-            this.BTN_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Cancel.TabIndex = 4;
-            this.BTN_Cancel.Text = "Annuler";
-            this.BTN_Cancel.UseVisualStyleBackColor = true;
-            // 
             // DLG_PrescriptionRenewal
             // 
             this.AcceptButton = this.BTN_Ok;
@@ -361,6 +361,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DLG_PrescriptionRenewal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Renouvellement d\'ordonnance";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DLG_PrescriptionRenewal_FormClosing);
             this.Load += new System.EventHandler(this.DLG_PrescriptionRenewal_Load);

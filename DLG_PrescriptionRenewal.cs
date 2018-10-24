@@ -378,13 +378,27 @@ namespace Prescription_Renewal
             FBTN_Abort.Visible = true;
             if (LBX_PrescriptionNumber.SelectedIndex >= 0)
 
+            {
+                foreach (object listItem in LBX_PrescriptionNumber.SelectedItems)
                 {
-                    foreach (object listItem in LBX_PrescriptionNumber.SelectedItems)
-                    {
-                        MTBX_PrescriptionNumber.Text = listItem.ToString();
-                        MTBX_PrescriptionNumber.Focus();
-                    }
+                    MTBX_PrescriptionNumber.Text = listItem.ToString();
+                    MTBX_PrescriptionNumber.Focus();
+
+                        if (MTBX_PrescriptionNumber.Text != LBX_PrescriptionNumber.SelectedItem.ToString())
+                        {
+                            FBTN_Abort.Visible = true;
+                            FBTN_Editer.Visible = true;
+                            FBTN_Delete.Visible = false;
+                            MTBX_PrescriptionNumber.CausesValidation = false;
+                        }
+                        else
+                        {
+                            FBTN_Abort.Visible = true;
+                            FBTN_Editer.Visible = false;
+                            FBTN_Delete.Visible = true;
+                        }
                 }
+            }
             //if (MTBX_PrescriptionNumber.Text != LBX_PrescriptionNumber.SelectedItem.ToString())
             //{
             //    FBTN_Editer.Visible = true;
@@ -395,13 +409,14 @@ namespace Prescription_Renewal
         private void FBTN_Delete_Click(object sender, EventArgs e)
         {
             FBTN_Delete.Visible = false;
-            FBTN_Abort.Visible = false;
             if (this.LBX_PrescriptionNumber.SelectedIndex >= 0)
             {
                 this.LBX_PrescriptionNumber.Items.RemoveAt(this.LBX_PrescriptionNumber.SelectedIndex);
                 prescriptionRenewal.Remove_Prescription(LBX_PrescriptionNumber.SelectedIndex.ToString());
                 MTBX_PrescriptionNumber.Text = "";
             }
+            LBX_PrescriptionNumber.Enabled = true;
+            FBTN_Abort.Visible = false;
         }
         private void LBX_PrescriptionNumber_Click(object sender, EventArgs e)
         {
@@ -421,7 +436,6 @@ namespace Prescription_Renewal
                     FBTN_Editer.Visible = true;
                     FBTN_Add.Visible = false;
                     FBTN_Add.Enabled = false;
-
                 }
             }
         }
@@ -429,12 +443,15 @@ namespace Prescription_Renewal
         private void FBTN_Editer_Click(object sender, EventArgs e)
         {
             FBTN_Abort.Visible = false;
-            MTBX_PrescriptionNumber.Text = "";
             FBTN_Editer.Visible = false;
-            //LBX_PrescriptionNumber.Items.Add(MTBX_PrescriptionNumber.Text);
-            //prescriptionRenewal.Add_Prescription(MTBX_PrescriptionNumber.Text);
-            //MTBX_PrescriptionNumber.Text = "";
-            //LBX_PrescriptionNumber.Enabled = true;
+            
+            this.LBX_PrescriptionNumber.Items.RemoveAt(this.LBX_PrescriptionNumber.SelectedIndex);
+            prescriptionRenewal.Remove_Prescription(LBX_PrescriptionNumber.SelectedIndex.ToString());
+            LBX_PrescriptionNumber.Items.Add(MTBX_PrescriptionNumber.Text);
+            prescriptionRenewal.Add_Prescription(MTBX_PrescriptionNumber.Text);
+            MTBX_PrescriptionNumber.Text = "";
+            LBX_PrescriptionNumber.Enabled = true;
+            FBTN_Abort.Visible = false;
         }
     }
 }
