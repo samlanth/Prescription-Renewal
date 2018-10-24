@@ -59,7 +59,7 @@ namespace Prescription_Renewal
                 FBTN_Add.Visible = true;
                 LBX_PrescriptionNumber.Enabled = false;
             }
-            else if (LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text))
+            else if (LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text) && LBX_PrescriptionNumber.SelectedIndex < 0)
             {
                 FBTN_Add.Enabled = false;
                 FBTN_Add.Visible = false;
@@ -103,10 +103,12 @@ namespace Prescription_Renewal
         }
         private bool Validate_Phone(ref string message)
         {
-            if (MTBX_Phone.Text.Length != 9)
-                message = "Téléphone absent / incorrecte";
-            else
-                message = "Téléphone absent / incorrecte";
+            if (!MTBX_PrescriptionNumber.MaskCompleted)
+                message = "Téléphone absent";
+                else
+                {
+                    MTBX_PrescriptionNumber.CausesValidation = false;
+                }
             return MTBX_Phone.MaskCompleted;
         }
         private bool Validate_Email(ref string message)
@@ -159,6 +161,12 @@ namespace Prescription_Renewal
             }
             FBTN_Abort.Visible = false;
             FBTN_Editer.Visible = false;
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.SetToolTip(this.FBTN_Abort, "Annuler");
+            toolTip1.SetToolTip(this.FBTN_Add, "Ajouter ce numèro d'ordonnance");
+            toolTip1.SetToolTip(this.FBTN_Delete, "Éffacer ce numèro d'ordonnance");
+            toolTip1.SetToolTip(this.FBTN_Editer, "Modifier");
+            TBX_PhoneExtension.MaxLength = 5;
         }
 
         private void prescriptionRenewal_to_Dlg()
@@ -215,7 +223,8 @@ namespace Prescription_Renewal
 
         private void TBX_FirstName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && (e.KeyChar != '-') && (e.KeyChar != '\''))
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) &&
+                (e.KeyChar != '-') && (e.KeyChar != '\''))
             {
                 e.Handled = true;
             }
@@ -369,13 +378,14 @@ namespace Prescription_Renewal
         private void MTBX_PrescriptionNumber_Enter(object sender, EventArgs e)
         {
             MTBX_PrescriptionNumber.Visible = true;
-            BTN_Cancel.Enabled = false;
+           BTN_Cancel.Enabled = false;
             BTN_Ok.Enabled = false;
         }
 
         private void LBX_PrescriptionNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
             FBTN_Abort.Visible = true;
+            LBX_PrescriptionNumber.Enabled = false;
             if (LBX_PrescriptionNumber.SelectedIndex >= 0)
 
             {
@@ -397,13 +407,9 @@ namespace Prescription_Renewal
                             FBTN_Editer.Visible = false;
                             FBTN_Delete.Visible = true;
                         }
+
                 }
             }
-            //if (MTBX_PrescriptionNumber.Text != LBX_PrescriptionNumber.SelectedItem.ToString())
-            //{
-            //    FBTN_Editer.Visible = true;
-            //    FBTN_Delete.Visible = false;
-            //}
         }
 
         private void FBTN_Delete_Click(object sender, EventArgs e)
@@ -431,15 +437,26 @@ namespace Prescription_Renewal
             }
             if (LBX_PrescriptionNumber.SelectedIndex >= 0)
             {
-                if (MTBX_PrescriptionNumber.Text != LBX_PrescriptionNumber.SelectedItem.ToString() && MTBX_PrescriptionNumber.MaskCompleted)
+                if (MTBX_PrescriptionNumber.Text != LBX_PrescriptionNumber.SelectedItem.ToString() && MTBX_PrescriptionNumber.MaskCompleted && !LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text))
                 {
                     FBTN_Editer.Visible = true;
                     FBTN_Add.Visible = false;
                     FBTN_Add.Enabled = false;
                 }
+
+                else if (!MTBX_PrescriptionNumber.MaskCompleted && !LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text))
+                {
+                    FBTN_Editer.Visible = false;
+                }
+                else if (!LBX_PrescriptionNumber.Items.Contains(MTBX_PrescriptionNumber.Text))
+                {
+                    FBTN_Delete.Visible = true;
+                }
             }
         }
-
+             
+                        
+                            
         private void FBTN_Editer_Click(object sender, EventArgs e)
         {
             FBTN_Abort.Visible = false;
@@ -452,6 +469,47 @@ namespace Prescription_Renewal
             MTBX_PrescriptionNumber.Text = "";
             LBX_PrescriptionNumber.Enabled = true;
             FBTN_Abort.Visible = false;
+        }
+
+        private void FBTN_Editer_MouseLeave(object sender, EventArgs e)
+        {
+            this.FBTN_Editer.BackgroundImage = Properties.Resources.ICON_Editer_Neutre;
+        }
+
+        private void FBTN_Editer_MouseHover(object sender, EventArgs e)
+        {
+            this.FBTN_Editer.BackgroundImage = Properties.Resources.ICON_Editer_Survol;
+        }
+
+        private void FBTN_Editer_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.FBTN_Editer.BackgroundImage = Properties.Resources.ICON_Editer_Click;
+        }
+
+        private void FBTN_Delete_MouseLeave(object sender, EventArgs e)
+        {
+            this.FBTN_Delete.BackgroundImage = Properties.Resources.ICON_Delete_Neutral;
+        }
+
+        private void FBTN_Delete_MouseHover(object sender, EventArgs e)
+        {
+            this.FBTN_Delete.BackgroundImage = Properties.Resources.ICON_Delete_Over;
+        }
+
+        private void FBTN_Delete_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.FBTN_Delete.BackgroundImage = Properties.Resources.ICON_Delete_Click;
+        }
+
+        private void TBX_LastName_Leave(object sender, EventArgs e)
+        {
+            var tbx = sender as TextBox;
+            tbx.Text = ReformatName(tbx.Text);
+        }
+
+        private void MTBX_PrescriptionNumber_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

@@ -44,16 +44,16 @@
             this.TBX_LastName = new System.Windows.Forms.TextBox();
             this.TBX_FirstName = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.FBTN_Editer = new FlashButton.FlashButton();
+            this.FBTN_Delete = new FlashButton.FlashButton();
+            this.FBTN_Abort = new FlashButton.FlashButton();
+            this.FBTN_Add = new FlashButton.FlashButton();
             this.LB_Comment = new System.Windows.Forms.Label();
             this.RBTX_Comment = new System.Windows.Forms.RichTextBox();
             this.LBX_PrescriptionNumber = new System.Windows.Forms.ListBox();
             this.MTBX_PrescriptionNumber = new System.Windows.Forms.MaskedTextBox();
             this.BTN_Ok = new System.Windows.Forms.Button();
             this.BTN_Cancel = new System.Windows.Forms.Button();
-            this.FBTN_Editer = new FlashButton.FlashButton();
-            this.FBTN_Delete = new FlashButton.FlashButton();
-            this.FBTN_Abort = new FlashButton.FlashButton();
-            this.FBTN_Add = new FlashButton.FlashButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -66,7 +66,7 @@
             this.groupBox1.Controls.Add(this.MTBX_ZipCode);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(400, 75);
+            this.groupBox1.Size = new System.Drawing.Size(383, 75);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Choix de succursale";
@@ -76,7 +76,7 @@
             this.CBB_StoreSelector.FormattingEnabled = true;
             this.CBB_StoreSelector.Location = new System.Drawing.Point(6, 45);
             this.CBB_StoreSelector.Name = "CBB_StoreSelector";
-            this.CBB_StoreSelector.Size = new System.Drawing.Size(357, 21);
+            this.CBB_StoreSelector.Size = new System.Drawing.Size(352, 21);
             this.CBB_StoreSelector.TabIndex = 3;
             this.CBB_StoreSelector.SelectedIndexChanged += new System.EventHandler(this.CBB_StoreSelector_SelectedIndexChanged);
             // 
@@ -84,7 +84,7 @@
             // 
             this.LB_ZipCode.AutoSize = true;
             this.LB_ZipCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_ZipCode.Location = new System.Drawing.Point(160, 22);
+            this.LB_ZipCode.Location = new System.Drawing.Point(145, 22);
             this.LB_ZipCode.Name = "LB_ZipCode";
             this.LB_ZipCode.Size = new System.Drawing.Size(161, 13);
             this.LB_ZipCode.TabIndex = 1;
@@ -92,9 +92,9 @@
             // 
             // MTBX_ZipCode
             // 
-            this.MTBX_ZipCode.Location = new System.Drawing.Point(327, 19);
+            this.MTBX_ZipCode.Location = new System.Drawing.Point(312, 19);
             this.MTBX_ZipCode.Name = "MTBX_ZipCode";
-            this.MTBX_ZipCode.Size = new System.Drawing.Size(36, 20);
+            this.MTBX_ZipCode.Size = new System.Drawing.Size(46, 20);
             this.MTBX_ZipCode.TabIndex = 0;
             this.MTBX_ZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MTBX_ZipCode_KeyPress);
             // 
@@ -112,16 +112,16 @@
             this.groupBox2.Controls.Add(this.TBX_FirstName);
             this.groupBox2.Location = new System.Drawing.Point(12, 93);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(400, 123);
+            this.groupBox2.Size = new System.Drawing.Size(381, 150);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informations sur le client";
             // 
             // MTBX_Phone
             // 
-            this.MTBX_Phone.Location = new System.Drawing.Point(82, 71);
+            this.MTBX_Phone.Location = new System.Drawing.Point(82, 89);
             this.MTBX_Phone.Name = "MTBX_Phone";
-            this.MTBX_Phone.Size = new System.Drawing.Size(101, 20);
+            this.MTBX_Phone.Size = new System.Drawing.Size(88, 20);
             this.MTBX_Phone.TabIndex = 2;
             this.MTBX_Phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MTBX_Phone_KeyPress);
             // 
@@ -129,7 +129,7 @@
             // 
             this.LB_EMail.AutoSize = true;
             this.LB_EMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_EMail.Location = new System.Drawing.Point(26, 104);
+            this.LB_EMail.Location = new System.Drawing.Point(27, 118);
             this.LB_EMail.Name = "LB_EMail";
             this.LB_EMail.Size = new System.Drawing.Size(50, 13);
             this.LB_EMail.TabIndex = 9;
@@ -138,7 +138,7 @@
             // LB_PhoneExtension
             // 
             this.LB_PhoneExtension.AutoSize = true;
-            this.LB_PhoneExtension.Location = new System.Drawing.Point(224, 78);
+            this.LB_PhoneExtension.Location = new System.Drawing.Point(236, 92);
             this.LB_PhoneExtension.Name = "LB_PhoneExtension";
             this.LB_PhoneExtension.Size = new System.Drawing.Size(34, 13);
             this.LB_PhoneExtension.TabIndex = 8;
@@ -146,16 +146,16 @@
             // 
             // TBX_PhoneExtension
             // 
-            this.TBX_PhoneExtension.Location = new System.Drawing.Point(264, 71);
+            this.TBX_PhoneExtension.Location = new System.Drawing.Point(278, 89);
             this.TBX_PhoneExtension.Name = "TBX_PhoneExtension";
-            this.TBX_PhoneExtension.Size = new System.Drawing.Size(76, 20);
+            this.TBX_PhoneExtension.Size = new System.Drawing.Size(44, 20);
             this.TBX_PhoneExtension.TabIndex = 3;
             // 
             // LB_Phone
             // 
             this.LB_Phone.AutoSize = true;
             this.LB_Phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Phone.Location = new System.Drawing.Point(12, 78);
+            this.LB_Phone.Location = new System.Drawing.Point(12, 92);
             this.LB_Phone.Name = "LB_Phone";
             this.LB_Phone.Size = new System.Drawing.Size(67, 13);
             this.LB_Phone.TabIndex = 6;
@@ -165,7 +165,7 @@
             // 
             this.LB_LastName.AutoSize = true;
             this.LB_LastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_LastName.Location = new System.Drawing.Point(44, 55);
+            this.LB_LastName.Location = new System.Drawing.Point(44, 62);
             this.LB_LastName.Name = "LB_LastName";
             this.LB_LastName.Size = new System.Drawing.Size(32, 13);
             this.LB_LastName.TabIndex = 5;
@@ -175,7 +175,7 @@
             // 
             this.LB_First_Name.AutoSize = true;
             this.LB_First_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_First_Name.Location = new System.Drawing.Point(27, 26);
+            this.LB_First_Name.Location = new System.Drawing.Point(27, 29);
             this.LB_First_Name.Name = "LB_First_Name";
             this.LB_First_Name.Size = new System.Drawing.Size(49, 13);
             this.LB_First_Name.TabIndex = 4;
@@ -183,24 +183,25 @@
             // 
             // TBX_EMail
             // 
-            this.TBX_EMail.Location = new System.Drawing.Point(82, 97);
+            this.TBX_EMail.Location = new System.Drawing.Point(82, 115);
             this.TBX_EMail.Name = "TBX_EMail";
-            this.TBX_EMail.Size = new System.Drawing.Size(281, 20);
+            this.TBX_EMail.Size = new System.Drawing.Size(276, 20);
             this.TBX_EMail.TabIndex = 5;
             // 
             // TBX_LastName
             // 
-            this.TBX_LastName.Location = new System.Drawing.Point(82, 48);
+            this.TBX_LastName.Location = new System.Drawing.Point(82, 55);
             this.TBX_LastName.Name = "TBX_LastName";
-            this.TBX_LastName.Size = new System.Drawing.Size(281, 20);
+            this.TBX_LastName.Size = new System.Drawing.Size(276, 20);
             this.TBX_LastName.TabIndex = 1;
             this.TBX_LastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBX_LastName_KeyPress);
+            this.TBX_LastName.Leave += new System.EventHandler(this.TBX_LastName_Leave);
             // 
             // TBX_FirstName
             // 
-            this.TBX_FirstName.Location = new System.Drawing.Point(82, 19);
+            this.TBX_FirstName.Location = new System.Drawing.Point(82, 26);
             this.TBX_FirstName.Name = "TBX_FirstName";
-            this.TBX_FirstName.Size = new System.Drawing.Size(281, 20);
+            this.TBX_FirstName.Size = new System.Drawing.Size(276, 20);
             this.TBX_FirstName.TabIndex = 0;
             this.TBX_FirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBX_FirstName_KeyPress);
             this.TBX_FirstName.Leave += new System.EventHandler(this.TBX_FirstName_Leave);
@@ -215,73 +216,12 @@
             this.groupBox3.Controls.Add(this.RBTX_Comment);
             this.groupBox3.Controls.Add(this.LBX_PrescriptionNumber);
             this.groupBox3.Controls.Add(this.MTBX_PrescriptionNumber);
-            this.groupBox3.Location = new System.Drawing.Point(12, 222);
+            this.groupBox3.Location = new System.Drawing.Point(12, 249);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(400, 122);
+            this.groupBox3.Size = new System.Drawing.Size(381, 168);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Liste de numéros d\'ordonnance";
-            // 
-            // LB_Comment
-            // 
-            this.LB_Comment.AutoSize = true;
-            this.LB_Comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Comment.Location = new System.Drawing.Point(169, 29);
-            this.LB_Comment.Name = "LB_Comment";
-            this.LB_Comment.Size = new System.Drawing.Size(166, 13);
-            this.LB_Comment.TabIndex = 3;
-            this.LB_Comment.Text = "Commentaire du pharmacien";
-            // 
-            // RBTX_Comment
-            // 
-            this.RBTX_Comment.AcceptsTab = true;
-            this.RBTX_Comment.Location = new System.Drawing.Point(163, 45);
-            this.RBTX_Comment.Name = "RBTX_Comment";
-            this.RBTX_Comment.Size = new System.Drawing.Size(208, 69);
-            this.RBTX_Comment.TabIndex = 2;
-            this.RBTX_Comment.Text = "";
-            // 
-            // LBX_PrescriptionNumber
-            // 
-            this.LBX_PrescriptionNumber.FormattingEnabled = true;
-            this.LBX_PrescriptionNumber.Location = new System.Drawing.Point(6, 45);
-            this.LBX_PrescriptionNumber.Name = "LBX_PrescriptionNumber";
-            this.LBX_PrescriptionNumber.Size = new System.Drawing.Size(117, 69);
-            this.LBX_PrescriptionNumber.TabIndex = 1;
-            this.LBX_PrescriptionNumber.Click += new System.EventHandler(this.LBX_PrescriptionNumber_Click);
-            this.LBX_PrescriptionNumber.SelectedIndexChanged += new System.EventHandler(this.LBX_PrescriptionNumber_SelectedIndexChanged);
-            // 
-            // MTBX_PrescriptionNumber
-            // 
-            this.MTBX_PrescriptionNumber.Location = new System.Drawing.Point(6, 19);
-            this.MTBX_PrescriptionNumber.Name = "MTBX_PrescriptionNumber";
-            this.MTBX_PrescriptionNumber.Size = new System.Drawing.Size(100, 20);
-            this.MTBX_PrescriptionNumber.TabIndex = 0;
-            this.MTBX_PrescriptionNumber.Click += new System.EventHandler(this.MTBX_PrescriptionNumber_Click);
-            this.MTBX_PrescriptionNumber.TextChanged += new System.EventHandler(this.MTBX_PrescriptionNumber_TextChanged);
-            this.MTBX_PrescriptionNumber.Enter += new System.EventHandler(this.MTBX_PrescriptionNumber_Enter);
-            this.MTBX_PrescriptionNumber.Leave += new System.EventHandler(this.MTBX_PrescriptionNumber_Leave);
-            // 
-            // BTN_Ok
-            // 
-            this.BTN_Ok.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BTN_Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BTN_Ok.Location = new System.Drawing.Point(256, 350);
-            this.BTN_Ok.Name = "BTN_Ok";
-            this.BTN_Ok.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Ok.TabIndex = 3;
-            this.BTN_Ok.Text = "Renouveler";
-            this.BTN_Ok.UseVisualStyleBackColor = true;
-            // 
-            // BTN_Cancel
-            // 
-            this.BTN_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BTN_Cancel.Location = new System.Drawing.Point(337, 350);
-            this.BTN_Cancel.Name = "BTN_Cancel";
-            this.BTN_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Cancel.TabIndex = 4;
-            this.BTN_Cancel.Text = "Annuler";
-            this.BTN_Cancel.UseVisualStyleBackColor = true;
             // 
             // FBTN_Editer
             // 
@@ -291,11 +231,14 @@
             this.FBTN_Editer.ImageDisable = null;
             this.FBTN_Editer.ImageNeutral = null;
             this.FBTN_Editer.ImageOver = null;
-            this.FBTN_Editer.Location = new System.Drawing.Point(112, 19);
+            this.FBTN_Editer.Location = new System.Drawing.Point(119, 19);
             this.FBTN_Editer.Name = "FBTN_Editer";
-            this.FBTN_Editer.Size = new System.Drawing.Size(23, 20);
+            this.FBTN_Editer.Size = new System.Drawing.Size(23, 26);
             this.FBTN_Editer.TabIndex = 5;
             this.FBTN_Editer.Click += new System.EventHandler(this.FBTN_Editer_Click);
+            this.FBTN_Editer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FBTN_Editer_MouseDown);
+            this.FBTN_Editer.MouseLeave += new System.EventHandler(this.FBTN_Editer_MouseLeave);
+            this.FBTN_Editer.MouseHover += new System.EventHandler(this.FBTN_Editer_MouseHover);
             // 
             // FBTN_Delete
             // 
@@ -305,12 +248,15 @@
             this.FBTN_Delete.ImageDisable = null;
             this.FBTN_Delete.ImageNeutral = null;
             this.FBTN_Delete.ImageOver = null;
-            this.FBTN_Delete.Location = new System.Drawing.Point(112, 19);
+            this.FBTN_Delete.Location = new System.Drawing.Point(119, 19);
             this.FBTN_Delete.Name = "FBTN_Delete";
-            this.FBTN_Delete.Size = new System.Drawing.Size(23, 20);
+            this.FBTN_Delete.Size = new System.Drawing.Size(23, 26);
             this.FBTN_Delete.TabIndex = 7;
             this.FBTN_Delete.Visible = false;
             this.FBTN_Delete.Click += new System.EventHandler(this.FBTN_Delete_Click);
+            this.FBTN_Delete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FBTN_Delete_MouseDown);
+            this.FBTN_Delete.MouseLeave += new System.EventHandler(this.FBTN_Delete_MouseLeave);
+            this.FBTN_Delete.MouseHover += new System.EventHandler(this.FBTN_Delete_MouseHover);
             // 
             // FBTN_Abort
             // 
@@ -320,9 +266,9 @@
             this.FBTN_Abort.ImageDisable = null;
             this.FBTN_Abort.ImageNeutral = null;
             this.FBTN_Abort.ImageOver = null;
-            this.FBTN_Abort.Location = new System.Drawing.Point(141, 19);
+            this.FBTN_Abort.Location = new System.Drawing.Point(148, 22);
             this.FBTN_Abort.Name = "FBTN_Abort";
-            this.FBTN_Abort.Size = new System.Drawing.Size(22, 20);
+            this.FBTN_Abort.Size = new System.Drawing.Size(22, 23);
             this.FBTN_Abort.TabIndex = 6;
             this.FBTN_Abort.Click += new System.EventHandler(this.FBTN_Abort_Click);
             this.FBTN_Abort.Leave += new System.EventHandler(this.FBTN_Abort_Leave);
@@ -338,7 +284,7 @@
             this.FBTN_Add.ImageDisable = null;
             this.FBTN_Add.ImageNeutral = null;
             this.FBTN_Add.ImageOver = null;
-            this.FBTN_Add.Location = new System.Drawing.Point(109, 19);
+            this.FBTN_Add.Location = new System.Drawing.Point(116, 22);
             this.FBTN_Add.Name = "FBTN_Add";
             this.FBTN_Add.Size = new System.Drawing.Size(26, 20);
             this.FBTN_Add.TabIndex = 5;
@@ -347,13 +293,75 @@
             this.FBTN_Add.MouseLeave += new System.EventHandler(this.FBTN_Add_MouseLeave);
             this.FBTN_Add.MouseHover += new System.EventHandler(this.FBTN_Add_MouseHover);
             // 
+            // LB_Comment
+            // 
+            this.LB_Comment.AutoSize = true;
+            this.LB_Comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_Comment.Location = new System.Drawing.Point(176, 25);
+            this.LB_Comment.Name = "LB_Comment";
+            this.LB_Comment.Size = new System.Drawing.Size(166, 13);
+            this.LB_Comment.TabIndex = 3;
+            this.LB_Comment.Text = "Commentaire au pharmacien";
+            // 
+            // RBTX_Comment
+            // 
+            this.RBTX_Comment.AcceptsTab = true;
+            this.RBTX_Comment.Location = new System.Drawing.Point(179, 48);
+            this.RBTX_Comment.Name = "RBTX_Comment";
+            this.RBTX_Comment.Size = new System.Drawing.Size(179, 108);
+            this.RBTX_Comment.TabIndex = 2;
+            this.RBTX_Comment.Text = "";
+            // 
+            // LBX_PrescriptionNumber
+            // 
+            this.LBX_PrescriptionNumber.FormattingEnabled = true;
+            this.LBX_PrescriptionNumber.Location = new System.Drawing.Point(15, 48);
+            this.LBX_PrescriptionNumber.Name = "LBX_PrescriptionNumber";
+            this.LBX_PrescriptionNumber.Size = new System.Drawing.Size(124, 108);
+            this.LBX_PrescriptionNumber.TabIndex = 1;
+            this.LBX_PrescriptionNumber.Click += new System.EventHandler(this.LBX_PrescriptionNumber_Click);
+            this.LBX_PrescriptionNumber.SelectedIndexChanged += new System.EventHandler(this.LBX_PrescriptionNumber_SelectedIndexChanged);
+            // 
+            // MTBX_PrescriptionNumber
+            // 
+            this.MTBX_PrescriptionNumber.Location = new System.Drawing.Point(15, 22);
+            this.MTBX_PrescriptionNumber.Name = "MTBX_PrescriptionNumber";
+            this.MTBX_PrescriptionNumber.Size = new System.Drawing.Size(94, 20);
+            this.MTBX_PrescriptionNumber.TabIndex = 0;
+            this.MTBX_PrescriptionNumber.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.MTBX_PrescriptionNumber_MaskInputRejected);
+            this.MTBX_PrescriptionNumber.Click += new System.EventHandler(this.MTBX_PrescriptionNumber_Click);
+            this.MTBX_PrescriptionNumber.TextChanged += new System.EventHandler(this.MTBX_PrescriptionNumber_TextChanged);
+            this.MTBX_PrescriptionNumber.Enter += new System.EventHandler(this.MTBX_PrescriptionNumber_Enter);
+            this.MTBX_PrescriptionNumber.Leave += new System.EventHandler(this.MTBX_PrescriptionNumber_Leave);
+            // 
+            // BTN_Ok
+            // 
+            this.BTN_Ok.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BTN_Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.BTN_Ok.Location = new System.Drawing.Point(290, 423);
+            this.BTN_Ok.Name = "BTN_Ok";
+            this.BTN_Ok.Size = new System.Drawing.Size(105, 25);
+            this.BTN_Ok.TabIndex = 3;
+            this.BTN_Ok.Text = "Renouveler";
+            this.BTN_Ok.UseVisualStyleBackColor = true;
+            // 
+            // BTN_Cancel
+            // 
+            this.BTN_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.BTN_Cancel.Location = new System.Drawing.Point(175, 423);
+            this.BTN_Cancel.Name = "BTN_Cancel";
+            this.BTN_Cancel.Size = new System.Drawing.Size(107, 25);
+            this.BTN_Cancel.TabIndex = 4;
+            this.BTN_Cancel.Text = "Annuler";
+            this.BTN_Cancel.UseVisualStyleBackColor = true;
+            // 
             // DLG_PrescriptionRenewal
             // 
             this.AcceptButton = this.BTN_Ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.BTN_Cancel;
-            this.ClientSize = new System.Drawing.Size(439, 382);
+            this.ClientSize = new System.Drawing.Size(407, 460);
             this.Controls.Add(this.BTN_Cancel);
             this.Controls.Add(this.BTN_Ok);
             this.Controls.Add(this.groupBox3);
